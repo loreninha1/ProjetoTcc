@@ -1,0 +1,120 @@
+/* Base e Tipografia */
+body.bg-app {
+    background: linear-gradient(180deg, #FFF0F3 0%, #FAFAFA 300px, #FAFAFA 100%) !important;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: #4A4A4A;
+    min-height: 100vh;
+}
+
+/* Navbar Personalizada */
+.custom-navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #FFE4E8 !important;
+    box-shadow: 0 4px 20px rgba(232, 122, 144, 0.08);
+}
+
+.brand-title {
+    color: #D81B60 !important;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+}
+
+.brand-badge {
+    background: #FFE4E8;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+}
+
+.custom-nav-link {
+    color: #5A5A5A !important;
+    font-weight: 700 !important;
+    padding: 8px 16px !important;
+    border-radius: 20px;
+    transition: all 0.25s ease;
+}
+
+    .custom-nav-link:hover {
+        color: #D81B60 !important;
+        background-color: #FFF0F3;
+    }
+
+/* Botão Saída Rápida */
+.btn-quick-exit {
+    background-color: #F8F9FA;
+    border: 1.5px solid #E2E8F0;
+    color: #64748B;
+    border-radius: 25px;
+    font-weight: 700;
+    padding: 6px 18px;
+    transition: all 0.2s ease;
+}
+
+    .btn-quick-exit:hover {
+        background-color: #E2E8F0;
+        color: #334155;
+    }
+
+/* Títulos das Páginas */
+h1, h2, h3, .h1, .h2, .h3 {
+    color: #2D3748;
+    font-weight: 800;
+}
+
+.text-primary {
+    color: #D81B60 !important;
+}
+
+/* Cartões do Mural e Formulários */
+.card, .form-container {
+    background: #FFFFFF !important;
+    border: 1px solid #FFE4E8 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(216, 27, 96, 0.05) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 35px rgba(216, 27, 96, 0.1) !important;
+    }
+
+/* Estilização dos Formulários e Inputs */
+.form-control, .form-select {
+    border: 1.5px solid #FFD1D9 !important;
+    border-radius: 14px !important;
+    padding: 12px 16px !important;
+    font-size: 0.98rem;
+    transition: all 0.2s ease;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #E87A90 !important;
+        box-shadow: 0 0 0 4px rgba(232, 122, 144, 0.18) !important;
+    }
+
+/* Botão Principal com Degradê Rosa Suave */
+.btn-primary, button[type="submit"] {
+    background: linear-gradient(135deg, #E87A90 0%, #D81B60 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    padding: 12px 28px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 18px rgba(216, 27, 96, 0.25) !important;
+    transition: all 0.25s ease !important;
+}
+
+    .btn-primary:hover, button[type="submit"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(216, 27, 96, 0.35) !important;
+        filter: brightness(1.05);
+    }
+
+/* Rodapé */
+.custom-footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid #FFE4E8;
+    color: #718096;
+}

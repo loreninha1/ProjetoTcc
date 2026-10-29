@@ -1,0 +1,133 @@
+﻿@page
+@model ProjetoTcc.Pages.AdminModel
+@{
+    ViewData["Title"] = "Painel Administrativo";
+}
+
+<div class="container my-4">
+    @if (!Model.IsLogado)
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h4 class="fw-bold text-primary text-center mb-3">🔒 Acesso Administrativo</h4>
+                        <p class="text-muted small text-center">Área restrita para moderação da plataforma M.A.E.</p>
+
+                        @if (!string.IsNullOrEmpty(Model.MensagemErro))
+                        {
+                            <div class="alert alert-danger small">@Model.MensagemErro</div>
+                        }
+
+                        <form method="post" asp-page-handler="Login">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">E-mail</label>
+                                <input type="email" name="Email" class="form-control" required placeholder="admin@mae.com.br" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Senha</label>
+                                <input type="password" name="Senha" class="form-control" required placeholder="••••••••" />
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 fw-bold">Entrar no Painel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-primary">⚙️ Painel de Moderação de Conteúdo</h3>
+            <form method="post" asp-page-handler="Logout">
+                <button type="submit" class="btn btn-outline-danger btn-sm fw-bold">Sair do Painel</button>
+            </form>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.MensagemSucesso))
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @Model.MensagemSucesso
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.MensagemErro))
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @Model.MensagemErro
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <div class="row">
+            <!-- Gerenciamento de Depoimentos -->
+            <div class="col-md-8 mb-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold text-dark mb-3">Gerenciamento de Relatos</h5>
+
+                        @if (Model.ListaDepoimentos != null && Model.ListaDepoimentos.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Título</th>
+                                            <th>Fase</th>
+                                            <th>Conteúdo</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.ListaDepoimentos)
+                                        {
+                                            <tr>
+                                                <td><strong>@item.Id</strong></td>
+                                                <td>@item.Titulo</td>
+                                                <td><span class="badge bg-secondary">@item.FaseDiagnostico</span></td>
+                                                <td class="text-truncate" style="max-width: 200px;">@item.Conteudo</td>
+                                                <td>
+                                                    <form method="post" asp-page-handler="Excluir" asp-route-id="@item.Id">
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar este relato?');">
+                                                            Excluir
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted mb-0">Nenhum relato encontrado no sistema.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulário para Alterar Senha -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold text-dark mb-3">🔑 Alterar Senha</h5>
+                        <form method="post" asp-page-handler="AlterarSenha">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Nova Senha</label>
+                                <input type="password" name="NovaSenha" class="form-control" required placeholder="••••••••" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Confirmar Nova Senha</label>
+                                <input type="password" name="ConfirmarSenha" class="form-control" required placeholder="••••••••" />
+                            </div>
+                            <button type="submit" class="btn btn-success w-100 fw-bold">Atualizar Senha</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

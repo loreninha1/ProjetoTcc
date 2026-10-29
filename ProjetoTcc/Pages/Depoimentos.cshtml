@@ -1,0 +1,85 @@
+﻿@page
+@model ProjetoTcc.Pages.DepoimentosModel
+@{
+    ViewData["Title"] = "Relatos & Depoimentos";
+}
+
+<div class="container my-4">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Seja bem-vinda ao M.A.E.</h1>
+        <p class="lead">Mulheres em Apoio e Empatia : Sua rede de acolhimento e força.</p>
+        <hr></hr>
+        <h2 class="text-primary fw-bold">🎀 Relatos & Espaço de Acolhimento</h2>
+        <p class="text-muted lead">
+            Um espaço seguro para compartilhar sua jornada, encontrar coragem e lembrar que você nunca estará sozinha.
+        </p>
+    </div>
+
+    <!-- Formulário para envio anônimo -->
+    <div class="card border-0 shadow-sm mb-5 bg-light">
+        <div class="card-body p-4">
+            <h5 class="fw-bold text-primary mb-3">🌸 Compartilhe a sua história</h5>
+            <p class="text-muted small">
+                O seu relato será publicado com total anonimato para proteger sua privacidade.
+            </p>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Título do Relato</label>
+                    <input type="text" class="form-control" name="Titulo" placeholder="Ex: A descoberta e a força de recomeçar" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Fase do Diagnóstico</label>
+                    <select class="form-select" name="FaseDiagnostico" required>
+                        <option value="">Selecione a fase atual...</option>
+                        <option value="Suspeita / Investigação">Suspeita / Investigação</option>
+                        <option value="Em Tratamento (Quimio/Rádio)">Em Tratamento (Quimioterapia / Radioterapia)</option>
+                        <option value="Pós-Cirurgia / Reconstrução">Pós-Cirurgia / Reconstrução</option>
+                        <option value="Remissão / Superação">Remissão / Superação</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Seu Desabafo / Mensagem de Esperança</label>
+                    <textarea class="form-control" name="Conteudo" rows="5" placeholder="Escreva sobre seus sentimentos, dúvidas ou palavras de força para outras mulheres..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary fw-bold px-4">
+                    Publicar de Forma Anônima 🩷
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mural de Depoimentos Dinâmico -->
+    <h4 class="fw-bold text-dark mb-4">Mural de Histórias & Superação</h4>
+
+    @if (Model.ListaDepoimentos != null && Model.ListaDepoimentos.Any())
+    {
+        @foreach (var item in Model.ListaDepoimentos)
+        {
+            <div class="card mb-3 shadow-sm border-0 border-start border-4 border-primary">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="card-title fw-bold text-primary mb-0">@item.Titulo</h5>
+                        <span class="badge bg-secondary">@item.FaseDiagnostico</span>
+                    </div>
+                    <p class="card-text text-secondary mt-3">
+                        "@item.Conteudo"
+                    </p>
+                    <div class="card-footer bg-transparent border-0 text-muted small ps-0 pt-2">
+                        Publicado por: <strong>Autora Anônima 🎀</strong>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-light border text-center p-4 shadow-sm">
+            <p class="text-muted mb-0">🌸 Ainda não existem relatos publicados. Seja a primeira a compartilhar sua história e inspirar outras mulheres!</p>
+        </div>
+    }
+
+</div>

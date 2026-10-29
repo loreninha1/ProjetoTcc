@@ -1,0 +1,122 @@
+﻿@page
+@model ProjetoTcc.Pages.InformacoesModel
+@{
+    ViewData["Title"] = "Central de Dúvidas & Direitos";
+}
+
+<div class="container my-4">
+
+    <!-- Seção de Apresentação do M.A.E. e Conscientização -->
+    <div class="card border-0 shadow-sm mb-5 p-4 rounded-4" style="background: linear-gradient(135deg, #FFF0F3 0%, #FFFFFF 100%); border-left: 6px solid #D81B60 !important;">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="text-primary fw-bold mb-2">🎀 Sobre o Projeto M.A.E.</h3>
+                <p class="lead fw-semibold text-dark mb-3">
+                    <strong>M.A.E.</strong> significa <span class="text-danger">M</span>ulheres em <span class="text-danger">A</span>poio e <span class="text-danger">E</span>mpatia.
+                </p>
+                <p class="text-muted">
+                    O nome foi escolhido para simbolizar o cuidado, o acolhimento incondicional e a força do vínculo feminino no enfrentamento do câncer de mama. Ninguém precisa atravessar o diagnóstico ou o tratamento de forma isolada!
+                </p>
+
+                <hr class="my-3 text-pink opacity-25">
+
+                <h5 class="fw-bold text-dark mb-2">💡 O que é o Câncer de Mama?</h5>
+                <p class="text-muted mb-0">
+                    O câncer de mama é um desenvolvimento desordenado de células da mama que formam um tumor. É o tipo de câncer mais frequente entre as mulheres no Brasil (após o de pele não melanoma) mas quando diagnosticado precocemente, as chances de cura chegam a <strong>95%</strong>. A prevenção também envolve o autoexame constante, exames clínicos periódicos e a realização da mamografia conforme orientação médica.
+                </p>
+            </div>
+            <div class="col-lg-4 text-center mt-4 mt-lg-0">
+                <div class="p-3 bg-white rounded-4 shadow-sm border border-light">
+                    <span style="font-size: 3.5rem;">🌸</span>
+                    <h6 class="fw-bold text-primary mt-2">Detecção Precoce Salva Vidas</h6>
+                    <small class="text-muted d-block">Conheça seu corpo e consulte regularmente sua unidade de saúde pelo SUS.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Título Principal do FAQ -->
+    <div class="text-center mb-4">
+        <h3 class="text-primary fw-bold">📜 Central de Informações & Direitos</h3>
+        <p class="text-muted">Conheça seus direitos assegurados por lei e tire suas dúvidas sobre a plataforma.</p>
+    </div>
+
+    <!-- Accordion de Dúvidas e Leis -->
+    <div class="accordion shadow-sm" id="accordionInformacoes">
+
+        <!-- Pergunta 1: Direitos Garantidos por Lei -->
+        <div class="accordion-item border-0 mb-3 rounded shadow-sm">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    🎀 Quais são os meus direitos garantidos durante o tratamento?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionInformacoes">
+                <div class="accordion-body">
+                    <p class="text-muted">Pacientes diagnosticadas com câncer de mama possuem direitos assegurados por lei, tais como:</p>
+                    <ul class="lh-lg">
+                        <li>
+                            <strong>Início do Tratamento em até 60 dias:</strong> Garantia de iniciar o tratamento no SUS em até 60 dias do diagnóstico.
+                            <a href="http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2012/Lei/L12732.htm" target="_blank" rel="noopener noreferrer" class="text-decoration-none">Consulte a Lei nº 12.732/2012 🔗</a>
+                        </li>
+                        <li>
+                            <strong>Reconstrução Mamária:</strong> Direito à cirurgia plástica reparadora pelo SUS ou convênio.
+                            <a href="http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2013/Lei/L12802.htm" target="_blank" rel="noopener noreferrer" class="text-decoration-none">Consulte a Lei nº 12.802/2013 🔗</a>
+                        </li>
+                        <li>
+                            <strong>Saque do FGTS e PIS/PASEP:</strong> Liberação dos saldos para auxiliar nas despesas do tratamento.
+                            <a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/saque-fgts/Paginas/default.aspx" target="_blank" rel="noopener noreferrer" class="text-decoration-none">Orientações de Saque na Caixa 🔗</a>
+                        </li>
+                        <li>
+                            <strong>Prioridade na Tramitação de Processos:</strong> Atendimento prioritário em processos administrativos e judiciais.
+                            <a href="http://www.planalto.gov.br/ccivil_03/_Ato2015-2018/2015/Lei/L13105.htm" target="_blank" rel="noopener noreferrer" class="text-decoration-none">Art. 1.048 do CPC (Lei nº 13.105/2015) 🔗</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pergunta 2: Sobre a Privacidade do Site -->
+        <div class="accordion-item border-0 mb-3 rounded shadow-sm">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    🔒 Meu relato fica realmente anônimo no M.A.E.?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionInformacoes">
+                <div class="accordion-body text-muted">
+                    Sim! O projeto foi desenvolvido com total foco na privacidade e em conformidade com a LGPD. Não solicitamos cadastro, e-mail, nome ou qualquer informação pessoal. Seu depoimento é publicado diretamente no mural assinado como <strong>Autora Anônima</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pergunta 3: O que é o botão Saída Rápida -->
+        <div class="accordion-item border-0 mb-3 rounded shadow-sm">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    🚪 O que faz o botão "Saída Rápida"?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionInformacoes">
+                <div class="accordion-body text-muted">
+                    O botão de <strong>Saída Rápida</strong> fica sempre visível no cabeçalho do site. Ao ser clicado, ele redireciona imediatamente a navegação para um site neutro (Google), garantindo a sua privacidade caso precise fechar a página rapidamente.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pergunta 4: Suporte Emocional e Emergência -->
+        <div class="accordion-item border-0 mb-3 rounded shadow-sm">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    📞 Como encontrar suporte emocional imediato?
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionInformacoes">
+                <div class="accordion-body text-muted">
+                    Na aba <strong>Suporte Imediato</strong>, você encontra os telefones e contatos diretos do Centro de Valorização da Vida (CVV - Ligue 188), da Central de Atendimento à Mulher (Ligue 180) e de ONGs de acolhimento especializado.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
