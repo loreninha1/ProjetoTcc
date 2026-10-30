@@ -7,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 // 2. Registro do banco de dados SQLite
-builder.Services.AddDbContext<DepoimentosDB>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<DepoimentosDB>();
 
 // 3. Habilita suporte a sessão para o login e autenticação do Admin
 builder.Services.AddSession(options =>
