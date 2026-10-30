@@ -85,7 +85,7 @@ namespace ProjetoTcc.Data
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = @"
-                INSERT INTO Depoimentos (Titulo, FaseDiagnostico, Conteudo, DataCriacao)
+                INSERT INTO Depoimentos (Titulo, FaseDiagnostico, Conteudo)
                 VALUES (@titulo, @fase, @conteudo);";
 
             command.Parameters.AddWithValue("@titulo", depoimento.Titulo);
