@@ -39,8 +39,9 @@ namespace ProjetoTcc.Data
 
             // Insere o Administrador Padrão se ainda não existir
             command.CommandText = @"
-                INSERT OR IGNORE INTO Admins (Id, Nome, Email, Senha) 
-                VALUES (1, 'Administradora M.A.E', 'admin@mae.com.br', 'maeane#2023');";
+                INSERT INTO Admins (Id, Nome, Email, Senha) 
+                VALUES (1, 'Administradora M.A.E', 'admin@mae.com.br', 'maeane#2023')
+                ON CONFLICT (Email) DO NOTHING; ";
             command.ExecuteNonQuery();
         }
 
@@ -49,9 +50,9 @@ namespace ProjetoTcc.Data
             using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT COUNT(1) FROM Admins WHERE Email = $email AND Senha = $senha;";
-            command.Parameters.AddWithValue("$email", email);
-            command.Parameters.AddWithValue("$senha", senha);
+            command.CommandText = "SELECT COUNT(1) FROM Admins WHERE Email = @email AND Senha = @senha;";
+            command.Parameters.AddWithValue("@email", email);
+            command.Parameters.AddWithValue("@senha", senha);
 
             return Convert.ToInt32(command.ExecuteScalar()) > 0;
         }
@@ -61,9 +62,9 @@ namespace ProjetoTcc.Data
             using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "UPDATE Admins SET Senha = $novaSenha WHERE Email = $email;";
-            command.Parameters.AddWithValue("$novaSenha", novaSenha);
-            command.Parameters.AddWithValue("$email", email);
+            command.CommandText = "UPDATE Admins SET Senha = @novaSenha WHERE Email = @email;";
+            command.Parameters.AddWithValue("@novaSenha", novaSenha);
+            command.Parameters.AddWithValue("@email", email);
 
             return command.ExecuteNonQuery() > 0;
         }
@@ -73,8 +74,8 @@ namespace ProjetoTcc.Data
             using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "DELETE FROM Depoimentos WHERE Id = $id;";
-            command.Parameters.AddWithValue("$id", id);
+            command.CommandText = "DELETE FROM Depoimentos WHERE Id = @id;";
+            command.Parameters.AddWithValue("@id", id);
             command.ExecuteNonQuery();
         }
 
@@ -85,12 +86,11 @@ namespace ProjetoTcc.Data
             var command = connection.CreateCommand();
             command.CommandText = @"
                 INSERT INTO Depoimentos (Titulo, FaseDiagnostico, Conteudo, DataCriacao)
-                VALUES ($titulo, $fase, $conteudo, $data);";
+                VALUES (@titulo, @fase, @conteudo);";
 
-            command.Parameters.AddWithValue("$titulo", depoimento.Titulo);
-            command.Parameters.AddWithValue("$fase", depoimento.FaseDiagnostico);
-            command.Parameters.AddWithValue("$conteudo", depoimento.Conteudo);
-            command.Parameters.AddWithValue("$data", DateTime.Now.ToString("o"));
+            command.Parameters.AddWithValue("@titulo", depoimento.Titulo);
+            command.Parameters.AddWithValue("@fase", depoimento.FaseDiagnostico);
+            command.Parameters.AddWithValue("@conteudo", depoimento.Conteudo);
 
             command.ExecuteNonQuery();
         }
