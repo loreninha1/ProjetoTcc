@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Npgsql;
 using ProjetoTcc.Models;
 
 namespace ProjetoTcc.Data
@@ -16,22 +16,21 @@ namespace ProjetoTcc.Data
 
         private void CriarTabelasSeNaoExistem()
         {
-            using var connection = new SqliteConnection(_connectionString);
+            using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
 
             // Tabela de Depoimentos e Tabela de Admins
             command.CommandText = @"
                 CREATE TABLE IF NOT EXISTS Depoimentos (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Id SERIAL PRIMARY KEY,
                     Titulo TEXT NOT NULL,
                     FaseDiagnostico TEXT NOT NULL,
-                    Conteudo TEXT NOT NULL,
-                    DataCriacao TEXT NOT NULL
+                    Conteudo TEXT NOT NULL
                 );
 
                 CREATE TABLE IF NOT EXISTS Admins (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Id SERIAL PRIMARY KEY,
                     Nome TEXT NOT NULL,
                     Email TEXT NOT NULL UNIQUE,
                     Senha TEXT NOT NULL
@@ -47,7 +46,7 @@ namespace ProjetoTcc.Data
 
         public bool ValidarAdmin(string email, string senha)
         {
-            using var connection = new SqliteConnection(_connectionString);
+            using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = "SELECT COUNT(1) FROM Admins WHERE Email = $email AND Senha = $senha;";
@@ -59,7 +58,7 @@ namespace ProjetoTcc.Data
 
         public bool AlterarSenhaAdmin(string email, string novaSenha)
         {
-            using var connection = new SqliteConnection(_connectionString);
+            using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = "UPDATE Admins SET Senha = $novaSenha WHERE Email = $email;";
@@ -71,7 +70,7 @@ namespace ProjetoTcc.Data
 
         public void ExcluirDepoimento(int id)
         {
-            using var connection = new SqliteConnection(_connectionString);
+            using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = "DELETE FROM Depoimentos WHERE Id = $id;";
@@ -81,7 +80,7 @@ namespace ProjetoTcc.Data
 
         public void Inserir(Depoimentos depoimento)
         {
-            using var connection = new SqliteConnection(_connectionString);
+            using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = @"
@@ -99,7 +98,7 @@ namespace ProjetoTcc.Data
         public List<Depoimentos> ObterTodos()
         {
             var lista = new List<Depoimentos>();
-            using var connection = new SqliteConnection(_connectionString);
+            using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = "SELECT Id, Titulo, FaseDiagnostico, Conteudo FROM Depoimentos ORDER BY Id DESC;";

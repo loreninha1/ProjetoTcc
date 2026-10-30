@@ -1,4 +1,5 @@
 using ProjetoTcc.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 // 2. Registro do banco de dados SQLite
-builder.Services.AddScoped<DepoimentosDB>();
+builder.Services.AddDbContext<DepoimentosDB>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // 3. Habilita suporte a sessão para o login e autenticação do Admin
 builder.Services.AddSession(options =>
